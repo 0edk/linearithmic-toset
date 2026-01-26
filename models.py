@@ -8,7 +8,6 @@ def arrow_template(manager: ModelManager, i: int, j: int) -> TemplateDict:
         f"{{{{/Item {j}}}}}{{{{/Item {i}}}}}")
     template["afmt"] = (f"{{{{FrontSide}}}}\n<hr id=answer>\n"
         f"{{{{{"Forward" if i < j else "Backward"}}}}}")
-    print("making template", repr(template["qfmt"]), repr(template["afmt"]))
     return template
 
 def exp_separated(i: int, j: int) -> bool:
