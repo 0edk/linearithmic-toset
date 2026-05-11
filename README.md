@@ -90,6 +90,7 @@ cd linearithmic-toset-master
 # GitHub wraps a directory layer in ZIPs, which Anki needs not
 zip linearithmic_toset.zip *
 # Anki -> top menu -> Tools -> Add-ons -> Install from file... -> find that zip you just made
+cp shuffle.js .../collection.media/ # import shuffle.js as a media item
 ```
 
 If needed, restart Anki.
