@@ -8,7 +8,7 @@ import aqt
 
 from .flashcard_topology import indices, NoteTopology, TopologyDialog
 from .gui import TosetViewDialog
-from .models import arrow_template, exp_separated
+from .models import exp_separated, triad_template
 
 class TosetTopology(NoteTopology):
     @staticmethod
@@ -18,7 +18,7 @@ class TosetTopology(NoteTopology):
     def make_templates(self, order: int) -> Iterable[TemplateDict]:
         manager = self.mw.col.models
         return itertools.chain(*((
-            lambda i=i: (arrow_template(manager, i, j)
+            lambda i=i: (triad_template(manager, i, j)
             for j in indices(order) if exp_separated(i, j))
         )() for i in indices(order)))
 
@@ -28,6 +28,9 @@ class TosetTopology(NoteTopology):
             ("Context", "Source", "Forward", "Backward"),
             (f"Item {i}" for i in indices(order)),
         )
+
+    def custom_css(self, order: int) -> str:
+        return "#rl > span ~ span::before { content: \", \"; }\n"
 
     @staticmethod
     def next_order(order: Optional[int] = None) -> int:
